@@ -4,6 +4,12 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
 
+const cors = require('cors')
+
+const corsOptions = {
+    allowedHeaders: ['Content-Type', 'Authorization']
+}
+
 const app = express();
 // Bodyparser middleware
 app.use(
@@ -12,6 +18,10 @@ app.use(
     })
 );
 app.use(bodyParser.json());
+
+// cors
+app.use(cors(corsOptions));
+
 // DB Config
 const db = require("./config/keys").mongoURI;
 // Connect to MongoDB
